@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2c0dca29-b8e2-4f74-8b9d-5953c933cb50" name="Default Changelist" comment="" />
+    <list default="true" id="2c0dca29-b8e2-4f74-8b9d-5953c933cb50" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/dimas/java/study/awalGame.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/dimas/java/study/awalGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Snake/com/dimas/java/study/Board$TAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Snake/com/dimas/java/study/Board$TAdapter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Snake/com/dimas/java/study/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Snake/com/dimas/java/study/Board.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Snake/com/dimas/java/study/Snake.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Snake/com/dimas/java/study/Snake.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/dimas/java/study/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/dimas/java/study/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/dimas/java/study/Snake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/dimas/java/study/Snake.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,33 +28,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/dimas/java/study/Board.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="225" column="9" lean-forward="true" selection-start-line="225" selection-start-column="9" selection-end-line="225" selection-end-column="9" />
+            <state relative-caret-position="289">
+              <caret line="149" column="39" selection-start-line="149" selection-start-column="39" selection-end-line="149" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk-12/lib/src.zip!/java.desktop/java/awt/Component.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="3392" column="16" selection-start-line="3392" selection-start-column="16" selection-end-line="3392" selection-end-column="16" />
-              <folding>
-                <element signature="e#116693#116694#0" expanded="true" />
-                <element signature="e#116740#116741#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk-12/lib/src.zip!/java.desktop/java/awt/Graphics.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="883" column="48" lean-forward="true" selection-start-line="883" selection-start-column="48" selection-end-line="883" selection-end-column="48" />
             </state>
           </provider>
         </entry>
@@ -52,9 +41,11 @@
         <entry file="file://$PROJECT_DIR$/src/com/dimas/java/study/Snake.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="187">
-              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+              <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#142#143#0" expanded="true" />
+                <element signature="e#166#167#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -69,10 +60,21 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>repai</find>
+      <find>repain</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/com/dimas/java/study/Snake.java" />
+        <option value="$PROJECT_DIR$/src/com/dimas/java/study/awalGame.form" />
+        <option value="$PROJECT_DIR$/src/com/dimas/java/study/awalGame.java" />
         <option value="$PROJECT_DIR$/src/com/dimas/java/study/Board.java" />
       </list>
     </option>
@@ -83,14 +85,51 @@
     <option name="width" value="880" />
     <option name="height" value="1000" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Snake" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Snake" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Snake" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Snake" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Snake" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Snake" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Snake" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Snake" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="study" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH" value="175" />
+    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="322" />
     <property name="last_opened_file_path" value="E:/Snake" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -156,7 +195,7 @@
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.24966443" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16442953" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -236,17 +275,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-12/lib/src.zip!/java.desktop/javax/swing/JFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="122" column="32" lean-forward="true" selection-start-line="122" selection-start-column="32" selection-end-line="122" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-12/lib/src.zip!/java.desktop/javax/swing/Timer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="156" column="7" lean-forward="true" selection-start-line="156" selection-start-column="7" selection-end-line="156" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="jar://C:/Program Files/Java/jdk-12/lib/src.zip!/java.desktop/java/awt/Graphics.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="883" column="48" lean-forward="true" selection-start-line="883" selection-start-column="48" selection-end-line="883" selection-end-column="48" />
+        <state relative-caret-position="1292">
+          <caret line="103" column="22" selection-start-line="103" selection-start-column="22" selection-end-line="103" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk-12/lib/src.zip!/java.desktop/java/awt/Component.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="158">
-          <caret line="3392" column="16" selection-start-line="3392" selection-start-column="16" selection-end-line="3392" selection-end-column="16" />
+          <caret line="7262" column="16" selection-start-line="7262" selection-start-column="16" selection-end-line="7262" selection-end-column="16" />
           <folding>
             <element signature="e#116693#116694#0" expanded="true" />
             <element signature="e#116740#116741#0" expanded="true" />
@@ -254,20 +307,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-12/lib/src.zip!/java.base/java/lang/Runnable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="67" column="25" selection-start-line="67" selection-start-column="25" selection-end-line="67" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-12/lib/src.zip!/java.desktop/java/awt/Window.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="807" column="16" selection-start-line="807" selection-start-column="16" selection-end-line="807" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/dimas/java/study/awalGame.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/dimas/java/study/awalGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/dimas/java/study/Snake.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+          <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#142#143#0" expanded="true" />
+            <element signature="e#166#167#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/dimas/java/study/Board.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="225" column="9" lean-forward="true" selection-start-line="225" selection-start-column="9" selection-end-line="225" selection-end-column="9" />
+        <state relative-caret-position="289">
+          <caret line="149" column="39" selection-start-line="149" selection-start-column="39" selection-end-line="149" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

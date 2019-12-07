@@ -7,10 +7,7 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -21,9 +18,9 @@ public class Board extends JPanel implements ActionListener {
     private final int B_HEIGHT = 300;
     private final int DOT_SIZE = 10;
     private final int ALL_DOTS = 900;
-    private final int RAND_POS = 30;
-    private  int DELAY = 150;
-
+    private  int RAND_POS = 30;
+    private  int DELAY = 100;
+    private int scorenya;
     private final int x[] = new int[ALL_DOTS];
     private final int y[] = new int[ALL_DOTS];
     private final int i[] = new int[ALL_DOTS];
@@ -46,6 +43,7 @@ public class Board extends JPanel implements ActionListener {
     private Image apple;
     private Image apple_merah;
     private Image head;
+    private Object TAdapter;
 
     public Board() {
 
@@ -53,18 +51,19 @@ public class Board extends JPanel implements ActionListener {
     }
 
     private void initBoard() {
-
+        //Mencetak background game beserta assetnya
         addKeyListener(new TAdapter());
         setBackground(Color.black);
         setFocusable(true);
-
+        setFocusTraversalKeysEnabled(false);
         setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
         loadImages();
         initGame();
     }
 
-    private void loadImages() {
 
+    private void loadImages() {
+        //asset gambar untuk game snake
         ImageIcon iid = new ImageIcon("src/com/dot.png");
         ball = iid.getImage();
 
@@ -80,69 +79,84 @@ public class Board extends JPanel implements ActionListener {
 
     private void initGame() {
 
-        dots = 3;
+        dots = 3; //awal game ada tiga titik tubuh
 
-        for (int z = 0; z < dots; z++) {
+        for (int z = 0; z < dots; z++) {//posisi awal snake pada saat game dimulai
             x[z] = 50 - z * 10;
             y[z] = 10;
         }
 
-        locateApple();
+        locateApple();//menempatkan apelnya berada dimana
 
         timer = new Timer(DELAY, this);
         timer.start();
     }
 
     @Override
-    public void paintComponent(Graphics g) {
+    public void paintComponent(Graphics g) {//fungsi untuk menggambar snake
         super.paintComponent(g);
-
         doDrawing(g);
     }
 
     private void doDrawing(Graphics g) {
 
         if (inGame) {
-            g.drawImage(apple_merah, apple_i,apple_j,this);
+          if (dots%2 == 0){//akan muncul jika titik yang ada berjumlah kelipatan 2
+              g.drawImage(apple_merah, apple_i,apple_j,this);//maka akan muncul apel merah
+          }
 
-            g.drawImage(apple, apple_x, apple_y, this);
+            g.drawImage(apple, apple_x, apple_y, this);//menampilkan apel hijau
 
             for (int z = 0; z < dots; z++) {
                 if (z == 0) {
-                    g.drawImage(head, x[z], y[z], this);
+                    g.drawImage(head, x[z], y[z], this);//menggambar kepala
                 } else {
-                    g.drawImage(ball, x[z], y[z], this);
+                    g.drawImage(ball, x[z], y[z], this);//menggambar tubuh
                 }
             }
 
             Toolkit.getDefaultToolkit().sync();
 
-        } else {
+            Toolkit.getDefaultToolkit().sync();
+            String msg = "Score = " + scorenya;
 
+            Font small = new Font("Helvetica", Font.BOLD, 10);
+            FontMetrics metr = getFontMetrics(small);
+
+            g.setColor(Color.white);
+            g.setFont(small);
+            g.drawString(msg, 5, B_HEIGHT - (B_HEIGHT - 10));
+        } else {
             gameOver(g);
+            new TAdapter();
         }
     }
 
     private void gameOver(Graphics g) {
-
-        String msg = "Game Over";
+        inGame = false;
+        String msg = "Game Over \n" + "Tekan Spasi untuk Lanjut";
         Font small = new Font("Helvetica", Font.BOLD, 14);
         FontMetrics metr = getFontMetrics(small);
-
         g.setColor(Color.white);
         g.setFont(small);
         g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2);
     }
 
-    private void checkApple() {
+    private void checkAppleMerah(){
 
-        if ((x[0] == apple_x) && (y[0] == apple_y)) {
+        while ((x[0] == apple_i) && (y[0] == apple_j)) {
             dots++;
+            scorenya = scorenya + 10;
+            System.out.println(scorenya);
+            timer = new Timer(DELAY = 100, this);
+            timer.start();
             locateApple();
         }
-
-        if ((x[0] == apple_i) && (y[0] == apple_j)){
+    }
+    private void checkApple() {
+        if ((x[0] == apple_x) && (y[0] == apple_y)) {
             dots++;
+            scorenya = scorenya + 5;
             locateApple();
         }
     }
@@ -171,10 +185,9 @@ public class Board extends JPanel implements ActionListener {
         }
     }
 
-    private void checkCollision() {
+    private void checkCollision() {//jika keluar batas maka akan game over dan memakan badanya
 
-        for (int z = dots; z > 0; z--) {
-
+        for (int z = dots; z > 0; z--) {//memakan bagian badan
             if ((z > 4) && (x[0] == x[z]) && (y[0] == y[z])) {
                 inGame = false;
             }
@@ -201,12 +214,14 @@ public class Board extends JPanel implements ActionListener {
         }
     }
 
-    private void locateApple() {
-        int k = (int) (Math.random() * RAND_POS);
-        apple_i = ((k * DOT_SIZE));
+    private void locateApple() {//menentukan posisi tempat apel secara random
+        if (dots % 2 == 0) {
+            int k = (int) (Math.random() * RAND_POS);
+            apple_i = ((k * DOT_SIZE));
 
-        k = (int) (Math.random() * RAND_POS);
-        apple_j = ((k * DOT_SIZE));
+            k = (int) (Math.random() * RAND_POS);
+            apple_j = ((k * DOT_SIZE));
+        }
 
         int r = (int) (Math.random() * RAND_POS);
         apple_x = ((r * DOT_SIZE));
@@ -219,41 +234,49 @@ public class Board extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (inGame) {
-
-            checkApple();
-            checkCollision();
+            checkApple();//apa yang terjadi jika memakan apel hijau
+            checkAppleMerah();//apa yang terjadi jika memakan apel merah
+            checkCollision();//batas
             move();
         }
-
         repaint();
     }
 
-    private class TAdapter extends KeyAdapter {
+    public class TAdapter extends KeyAdapter {
 
         @Override
-        public void keyPressed(KeyEvent e) {
+        public void keyPressed(KeyEvent e) { //Saat menekan tombol arah
+            if (inGame==false){
+                if (e.getKeyCode() == KeyEvent.VK_SPACE){
+                    inGame=true;
+                    rightDirection = true;
+                    leftDirection = false;
+                    upDirection = false;
+                    downDirection = false;
+                    initBoard();
+                }
+            }
 
-            int key = e.getKeyCode();
 
-            if ((key == KeyEvent.VK_LEFT) && (!rightDirection)) {
+            if ((e.getKeyCode() == KeyEvent.VK_LEFT) && (!rightDirection)) {//Arah kiri
                 leftDirection = true;
                 upDirection = false;
                 downDirection = false;
             }
 
-            if ((key == KeyEvent.VK_RIGHT) && (!leftDirection)) {
+            if ((e.getKeyCode() == KeyEvent.VK_RIGHT) && (!leftDirection)) {//Arah kanan
                 rightDirection = true;
                 upDirection = false;
                 downDirection = false;
             }
 
-            if ((key == KeyEvent.VK_UP) && (!downDirection)) {
+            if ((e.getKeyCode() == KeyEvent.VK_UP) && (!downDirection)) {//Arah atas
                 upDirection = true;
                 rightDirection = false;
                 leftDirection = false;
             }
 
-            if ((key == KeyEvent.VK_DOWN) && (!upDirection)) {
+            if ((e.getKeyCode() == KeyEvent.VK_DOWN) && (!upDirection)) {//Arah bawah
                 downDirection = true;
                 rightDirection = false;
                 leftDirection = false;
