@@ -21,8 +21,11 @@ public class Board extends JPanel implements ActionListener {
     private final int ALL_DOTS = 900;
     private  int RAND_POS = 30;
     private  int DELAY = 100;
-    private double rumus = 1; //(Arya update 1): Buat balancing speed
+    private double level = 1; //(Arya update 1): Buat balancing speed
     private int scorenya;
+    private int RNGup = 1;
+    private int PWRup = 0;
+    private int stay = 0;
     private final int x[] = new int[ALL_DOTS];
     private final int y[] = new int[ALL_DOTS];
     private final int i[] = new int[ALL_DOTS];
@@ -44,6 +47,7 @@ public class Board extends JPanel implements ActionListener {
     private Image ball;
     private Image apple;
     private Image apple_merah;
+    private Image apple_biru;
     private Image head;
     private Object TAdapter;
 
@@ -61,6 +65,7 @@ public class Board extends JPanel implements ActionListener {
         setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
         loadImages();
         initGame();
+
     }
 
 
@@ -77,6 +82,9 @@ public class Board extends JPanel implements ActionListener {
 
         ImageIcon iir = new ImageIcon("src/com/apple_merah.png");
         apple_merah = iir.getImage();
+        
+        ImageIcon iis = new ImageIcon("src/com/apple_biru.png");
+        apple_biru = iis.getImage();
     }
 
     private void initGame() {
@@ -99,14 +107,46 @@ public class Board extends JPanel implements ActionListener {
         super.paintComponent(g);
         doDrawing(g);
     }
-
+    
+    private void spawnup() {
+    	double a =  (int) ( Math.random() * (9+level -level+1)+level) ;
+    	if( a <= 10 ) {
+			//Rasio spawn cepat : lambat = 2 : 1
+			if( RNGup == (int)(Math.random() * (3 - 1 + 1)) + 1 ) {				
+				PWRup=2; //keluar apel biru	
+			}
+			else {
+				PWRup=1; //keluar apel merah
+			}
+			stay = 1 ;
+		}
+    	System.out.print("wow = " + a); //cuma buat ngecek
+    	System.out.print("wth = " + stay);
+    }
+    
     private void doDrawing(Graphics g) {
 
+    	/* Aturan spawn powerupnya aku coba ganti , karena rencananya mau ada 6 powerup
+    	 * (cepat, lambat, proteksi, lupa, lupa, lupa), tapi untuk saat ini aku pakai
+    	 * 2 contoh dulu : cepat dan lambat
+    	 
         if (inGame) {
           if (dots%2 == 0){//akan muncul jika titik yang ada berjumlah kelipatan 2
               g.drawImage(apple_merah, apple_i,apple_j,this);//maka akan muncul apel merah
           }
-
+		*/
+    	
+    	if (inGame){
+		// Cara mengatur range math.random (int) (Math.random() * (max - min + 1)) + 1
+    		if(stay == 1) {
+    			//Rasio spawn cepat : lambat = 2 : 1
+    			if(PWRup==2) {
+    				g.drawImage(apple_biru, apple_i,apple_j,this);
+    			}
+    			else {
+    				g.drawImage(apple_merah, apple_i,apple_j,this);
+    			}
+    		}
             g.drawImage(apple, apple_x, apple_y, this);//menampilkan apel hijau
 
             for (int z = 0; z < dots; z++) {
@@ -121,11 +161,11 @@ public class Board extends JPanel implements ActionListener {
 
             Toolkit.getDefaultToolkit().sync();
             String msg ;
-            if(rumus== 8) {
+            if(level== 8) {
             	msg = "Score = " + scorenya + " || MAX SPEED" ; //Biar keren
             }
             else {
-            	msg = "Score = " + scorenya + " || Level = " + rumus;
+            	msg = "Score = " + scorenya + " || Speed = " + level;
             }
 
             Font small = new Font("Helvetica", Font.BOLD, 10);
@@ -157,21 +197,47 @@ public class Board extends JPanel implements ActionListener {
             scorenya = scorenya + 10;
             System.out.println(scorenya);
             //(Arya update 1): Rumusmu aku ubah, terus while aku ganti jadi if
-            if(rumus != 8) {
+            if(level != 8) {
             	
-            	DELAY = (int) (0.8+DELAY-50/rumus/1.6);
+            	DELAY = (int) (DELAY-(25/level+(level/10)));
             	timer.setDelay(DELAY);
-            	rumus++;
+            	level++;
             }
+            PWRup=0;
+            stay = 0;
             System.out.println("SPEED= " + DELAY);
             locateApple();
+            spawnup();
         }
     }
+    
+    private void checkAppleBiru(){
+
+        if ((x[0] == apple_i) && (y[0] == apple_j)) {
+            dots++;
+            scorenya = scorenya + 10;
+            System.out.println(scorenya);
+            if(level != 1) {          	
+            	DELAY = (int) (DELAY+(25/(level-1)+((level-1)/10))+1);
+            	timer.setDelay(DELAY);
+            	level--;
+            }
+            PWRup= 0;
+            stay = 0;
+            System.out.println("SPEED= " + DELAY);
+            locateApple();
+            spawnup();
+        }
+    }
+    
     private void checkApple() {
         if ((x[0] == apple_x) && (y[0] == apple_y)) {
             dots++;
-            scorenya = scorenya + 5;
+            scorenya = (int) (scorenya + 5*(1+level/10));
             locateApple();
+            PWRup=0;
+            stay =0;
+            spawnup();
         }
     }
 
@@ -229,13 +295,13 @@ public class Board extends JPanel implements ActionListener {
     }
 
     private void locateApple() {//menentukan posisi tempat apel secara random
-        if (dots % 2 == 0) {
+        
             int k = (int) (Math.random() * RAND_POS);
             apple_i = ((k * DOT_SIZE));
 
             k = (int) (Math.random() * RAND_POS);
             apple_j = ((k * DOT_SIZE));
-        }
+        
 
         int r = (int) (Math.random() * RAND_POS);
         apple_x = ((r * DOT_SIZE));
@@ -249,7 +315,8 @@ public class Board extends JPanel implements ActionListener {
 
         if (inGame) {
             checkApple();//apa yang terjadi jika memakan apel hijau
-            checkAppleMerah();//apa yang terjadi jika memakan apel merah
+            if(PWRup==1)checkAppleMerah();//apa yang terjadi jika memakan apel merah
+            else if (PWRup==2)checkAppleBiru();
             checkCollision();//batas
             move();
         }
@@ -269,9 +336,10 @@ public class Board extends JPanel implements ActionListener {
                     downDirection = false;
                     //(Arya update 1): aku tambahi supaya ngulangnya enak, dari awal lagi
                     scorenya = 0 ;
-                    rumus = 1;
+                    level = 1;
                     DELAY = 100;
-                    
+                    PWRup = 0;
+                    stay = 0;
                     initBoard();
                 }
             }
