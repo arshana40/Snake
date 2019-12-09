@@ -11,6 +11,7 @@ import java.awt.event.*;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import java.lang.Math; //(Arya update 1): Biar gampang hitung-hitungannya
 
 public class Board extends JPanel implements ActionListener {
 
@@ -20,6 +21,7 @@ public class Board extends JPanel implements ActionListener {
     private final int ALL_DOTS = 900;
     private  int RAND_POS = 30;
     private  int DELAY = 100;
+    private double rumus = 1; //(Arya update 1): Buat balancing speed
     private int scorenya;
     private final int x[] = new int[ALL_DOTS];
     private final int y[] = new int[ALL_DOTS];
@@ -118,7 +120,13 @@ public class Board extends JPanel implements ActionListener {
             Toolkit.getDefaultToolkit().sync();
 
             Toolkit.getDefaultToolkit().sync();
-            String msg = "Score = " + scorenya;
+            String msg ;
+            if(rumus== 8) {
+            	msg = "Score = " + scorenya + " || MAX SPEED" ; //Biar keren
+            }
+            else {
+            	msg = "Score = " + scorenya + " || Level = " + rumus;
+            }
 
             Font small = new Font("Helvetica", Font.BOLD, 10);
             FontMetrics metr = getFontMetrics(small);
@@ -144,12 +152,18 @@ public class Board extends JPanel implements ActionListener {
 
     private void checkAppleMerah(){
 
-        while ((x[0] == apple_i) && (y[0] == apple_j)) {
+        if ((x[0] == apple_i) && (y[0] == apple_j)) {
             dots++;
             scorenya = scorenya + 10;
             System.out.println(scorenya);
-            timer = new Timer(DELAY = 100, this);
-            timer.start();
+            //(Arya update 1): Rumusmu aku ubah, terus while aku ganti jadi if
+            if(rumus != 8) {
+            	
+            	DELAY = (int) (0.8+DELAY-50/rumus/1.6);
+            	timer.setDelay(DELAY);
+            	rumus++;
+            }
+            System.out.println("SPEED= " + DELAY);
             locateApple();
         }
     }
@@ -253,6 +267,11 @@ public class Board extends JPanel implements ActionListener {
                     leftDirection = false;
                     upDirection = false;
                     downDirection = false;
+                    //(Arya update 1): aku tambahi supaya ngulangnya enak, dari awal lagi
+                    scorenya = 0 ;
+                    rumus = 1;
+                    DELAY = 100;
+                    
                     initBoard();
                 }
             }
